@@ -7,10 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-    <link rel="shortcut icon" href="static/img/favicon.ico">
-    <link rel="stylesheet" href="static/assets/css/iconfont.css">
-    <link rel="stylesheet" href="static/css/common.css">
-    <link rel="stylesheet" href="static/css/index.css">
+
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="index.css">
 
     <style media="screen">
       /* Add space between Vega-Embed links  */
@@ -87,7 +87,7 @@
         "height": 200,
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "",
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "mark": "bar",
         "encoding": {
             "x": {"field": "target", "type": "nominal"},
@@ -99,7 +99,7 @@
         "height": 200,
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "",
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "mark": "bar",
         "encoding": {
             "x": {"field": "sex", "type": "nominal"},
@@ -107,7 +107,7 @@
         }
         }
     var targetAgeSpec = {
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "width": 350,
         // "width": {"step": 50, "for": "position"},
         "mark": "bar",
@@ -122,7 +122,7 @@
     var targetSexSpec = {
         "width": 300,
         "height": 200,
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         // "width": {"step": 50, "for": "position"},
         "mark": "bar",
         "encoding": {
@@ -135,7 +135,7 @@
     var targetSlopeSpec = {
         "width": 300,
         "height": 200,
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "mark": "bar",
         "encoding": {
             "x": {"field": "slope"},
@@ -148,7 +148,7 @@
     var targetFBSSpec = {
         "width": 300,
         "height": 200,
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "mark": "bar",
         "encoding": {
             "x": {"field": "fbs"},
@@ -161,7 +161,7 @@
     var targetCPSpec = {
         "width": 300,
         "height": 200,
-        "data": {"url": "data/heart.csv"},
+        "data": {"url": "heart.csv"},
         "mark": "bar",
         "encoding": {
             "x": {"field": "cp"},
@@ -176,7 +176,7 @@
         "width": 300,
         "height": 300,
         "data": {
-            "url": "data/us-10m.json",
+            "url": "us-10m.json",
             "format": {
             "type": "topojson",
             "feature": "counties"
@@ -186,7 +186,7 @@
             "lookup": "id",
             "from": {
             "data": {
-                "url": "data/unemployment.tsv"
+                "url": "unemployment.tsv"
             },
             "key": "id",
             "fields": ["rate"]
