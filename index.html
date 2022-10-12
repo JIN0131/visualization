@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Heart Disease</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="static/assets/css/iconfont.css">
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body id="investmentRisk">
+    <div id="container">
+        
+      
+        <main>
+            <!--样式里的l,m,r,t,b分别代表左，中，右，上，下-->
+            <div class="l">
+                <div class="l-t">
+                    <div class="chart-wrap" >
+                        <h3>Relationship between heart disease and age</h3>
+                        <div class="chart" id="targetAge" ></div>
+                    </div>
+                </div>
+                <div class="l-b">
+                    <div class="chart-wrap">
+                        <h3>Relationship between heart disease and gender</h3>
+                        <div class="chart" id="targetSex"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="m">
+                <div class="m-t">
+                    <div class="chart-wrap">
+                        <h3>The relationship between illness and Slope</h3>
+                        <div class="chart" id="targetSlope"></div>
+                    </div>
+                </div>
+                <div class="m-b">
+                    <div class="chart-wrap">
+                        <h3>Relationship between illness and FBS</h3>
+                        <div class="chart" id="targetFBS"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="r">
+                <div class="r-t">
+                    <div class="chart-wrap">
+                        <h3>Relationship between heart disease and CP</h3>
+                        <div class="chart" id="targetCP"></div>
+                    </div>
+                </div>
+                <div class="r-b">
+                    <div class="chart-wrap">
+                        <h3>Regional distribution map</h3>
+                        <div class="chart" id="targetMap"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+   
+
+    <script>
+
+      function open(type){
+        if(type ==1){
+            console.log("11")
+        }
+      }
+      // Assign the specification to a local variable vlSpec.
+      var targetSpec = {
+        "width": 200,
+        "height": 200,
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "",
+        "data": {"url": "data/heart.csv"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "target", "type": "nominal"},
+            "y": {"aggregate": "count",}
+        }
+        }
+    var sexSpec = {
+        "width": 300,
+        "height": 200,
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "",
+        "data": {"url": "data/heart.csv"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "sex", "type": "nominal"},
+            "y": {"aggregate": "count",}
+        }
+        }
+    var targetAgeSpec = {
+        "data": {"url": "data/heart.csv"},
+        "width": 350,
+        // "width": {"step": 50, "for": "position"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "age"},
+            "y": {"aggregate": "count",},
+            "xOffset": {"field": "target"},
+            "color": {"field": "target"}
+        }
+    }
+
+    var targetSexSpec = {
+        "width": 300,
+        "height": 200,
+        "data": {"url": "data/heart.csv"},
+        // "width": {"step": 50, "for": "position"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "sex"},
+            "y": {"aggregate": "count",},
+            "xOffset": {"field": "target"},
+            "color": {"field": "target"}
+        }
+    }
+    var targetSlopeSpec = {
+        "width": 300,
+        "height": 200,
+        "data": {"url": "data/heart.csv"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "slope"},
+            "y": {"aggregate": "count",},
+            "xOffset": {"field": "target"},
+            "color": {"field": "target"}
+        }
+    }
+
+    var targetFBSSpec = {
+        "width": 300,
+        "height": 200,
+        "data": {"url": "data/heart.csv"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "fbs"},
+            "y": {"aggregate": "count",},
+            "xOffset": {"field": "target"},
+            "color": {"field": "target"}
+        }
+    }
+
+    var targetCPSpec = {
+        "width": 300,
+        "height": 200,
+        "data": {"url": "data/heart.csv"},
+        "mark": "bar",
+        "encoding": {
+            "x": {"field": "cp"},
+            "y": {"aggregate": "count",},
+            "xOffset": {"field": "target"},
+            "color": {"field": "target"}
+        }
+    }
+
+    var targetMapSpec ={
+        "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+        "width": 300,
+        "height": 300,
+        "data": {
+            "url": "data/us-10m.json",
+            "format": {
+            "type": "topojson",
+            "feature": "counties"
+            }
+        },
+        "transform": [{
+            "lookup": "id",
+            "from": {
+            "data": {
+                "url": "data/unemployment.tsv"
+            },
+            "key": "id",
+            "fields": ["rate"]
+            }
+        }],
+        "projection": {
+            "type": "albersUsa"
+        },
+        "mark": "geoshape",
+        "encoding": {
+            "color": {
+            "field": "rate",
+            "type": "quantitative"
+            }
+        }
+        }
+
+      // Embed the visualization in the container with id `vis`
+    //   vegaEmbed('#target', targetSpec);
+    //   vegaEmbed('#sex', sexSpec);
+      vegaEmbed('#targetAge', targetAgeSpec);
+      vegaEmbed('#targetSex', targetSexSpec);
+      vegaEmbed('#targetSlope',targetSlopeSpec);
+      vegaEmbed('#targetFBS',targetFBSSpec);
+      vegaEmbed('#targetCP',targetCPSpec);
+      vegaEmbed('#targetMap',targetMapSpec)
+    </script>
+  </body>
+</html>
