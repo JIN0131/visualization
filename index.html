@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FIT3179: Final Assignment</title>
+    <title>MyVis</title>
     <meta charset="utf-8" />
 
     <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
@@ -174,9 +174,9 @@
 
     <script type="text/javascript">
       // Assign the specification to a local variable vlSpec.
-      var specVis1 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Map_1_v2.vl.json";
-      var specVis2 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Map_2_v2.vl-2.json";
-      var specVis3 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Vis3.vl-2.json";
+      var specVis1 = "./Map_1_v2.vl.json";
+      var specVis2 = "./Map_2_v2.vl-2.json";
+      var specVis3 = "./Vis3.vl-2.json";
       
       // Embed the visualization in the container with id `vis`
       vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
