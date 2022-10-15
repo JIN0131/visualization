@@ -1,218 +1,195 @@
+<!-- This HTML is the Vega-Lite Introduction -->
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Heart Disease</title>
+    <title>FIT3179: Final Assignment</title>
     <meta charset="utf-8" />
 
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-
-    <link rel="stylesheet" href="iconfont.css">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="index.css">
-
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    
+    <!-- Import vega-embed -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+    
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style media="screen">
       /* Add space between Vega-Embed links  */
       .vega-actions a {
         margin-right: 5px;
       }
+      *{
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+      h1{
+        font-weight: 900;
+        text-align: center;
+      }
+      p{
+        line-height: 1.5;
+      }
+       body{
+         background-color: lightgray;
+       }
+      .m1{
+        text-indent: 30px;
+      }
+       .page{
+         width: 1000px;    
+         background-color: white;   
+         margin: auto;
+         padding: 50px;
+         padding-top: 35px;
+      }
+      .p1{
+        width: 90%;
+        color: gray;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .au{
+        color: #EC8769 
+      }
+      .tas{
+        color: #cb181d
+      }
+      .vis-container{
+        width: 100%;
+      }
+      .description h2, h1{
+        margin-top:0px;
+      }
+      .description-bottom {
+        padding-top: 20px;
+      }
+      .description-left{
+        padding-right: 20px;
+      }
+      .description-right{
+        padding-left: 20px;
+      }
+      .pure-g{
+        margin-bottom: 25px;
+      }
+      .small-font{
+          font-size: 14px;
+      }
     </style>
   </head>
-  <body id="investmentRisk">
-    <div id="container">
-        
-      
-        <main>
-            <!--样式里的l,m,r,t,b分别代表左，中，右，上，下-->
-            <div class="l">
-                <div class="l-t">
-                    <div class="chart-wrap" >
-                        <h3>Relationship between heart disease and age</h3>
-                        <div class="chart" id="targetAge" ></div>
-                    </div>
-                </div>
-                <div class="l-b">
-                    <div class="chart-wrap">
-                        <h3>Relationship between heart disease and gender</h3>
-                        <div class="chart" id="targetSex"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="m">
-                <div class="m-t">
-                    <div class="chart-wrap">
-                        <h3>The relationship between illness and Slope</h3>
-                        <div class="chart" id="targetSlope"></div>
-                    </div>
-                </div>
-                <div class="m-b">
-                    <div class="chart-wrap">
-                        <h3>Relationship between illness and FBS</h3>
-                        <div class="chart" id="targetFBS"></div>
-                    </div>
-                </div>
-            </div>
+  <body>
     
-            <div class="r">
-                <div class="r-t">
-                    <div class="chart-wrap">
-                        <h3>Relationship between heart disease and CP</h3>
-                        <div class="chart" id="targetCP"></div>
-                    </div>
+    <div class="page">
+     <!-- pure grid group -->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1>Impact of COVID-19 on Economy of Australia</h1>
+          <p class="p1">COVID-19 is not only a global pandemic, it is also a public health crisis that affect financial market and global economy significantly. Chain effect like reduction in income, a rise in unemployment, and disruptions in the transportation, service, and manufacturing industries are among the consequences of the disease mitigation measures that have been implemented in many countries. It has become clear that most governments in the world underestimated the risks of rapid COVID-19 spread and were mostly reactive in their crisis response. As disease outbreaks are not likely to disappear in the near future, proactive international actions are required to not only save lives but also protect economic prosperity.</p>
+        </div>
+      </div>
+    <!-- end pure grid group -->
+      
+    <!-- pure grid group -->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div class="description description-left">
+              <h2>Global GDP of 2020 Compared to 2019</h2>
+                <div class="pure-u-1-1">
+                  <div id="vis1" class="vis-container"></div>
                 </div>
-                <div class="r-b">
-                    <div class="chart-wrap">
-                        <h3>Regional distribution map</h3>
-                        <div class="chart" id="targetMap"></div>
-                    </div>
-                </div>
+              <p class="m1">In year of <b>2020</b>, many country economy has been significantly impacted by the emerge of COVID-19, global pandemic. Compared to 2019, the global GDP growth is majorly reduced. As shown in the map, most of the country like China, United State, Canada and etc. get affected by the pandemic. <b class="au">Australia</b> is unable to escape from the list as well. <b class="au">Australia</b>'s GDP growth has reduce by 4.2% compared to last year, 2019. The number might seeem small but in term of GDP, -4.2% is actually really bad and it will cause a series of bad chain effect like reduction in income, then follow by unemployment and so on.</p>
+              <p class="m1">One of the major reason might be the <b>travel ban</b> and <b>travel restriction</b>. These restrictions have severly damanged the education, tourism and export industry (It affected other businesses as well). The worst part is that these industry are few of the major revenue that contribute to economy of <b class="au">Australia</b>.</p>
             </div>
-        </main>
-    </div>
+          </div>
+      </div>
+    <!-- end pure grid group -->
+      
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description-left">
+            <h2>Unemployment Rate of States in 2020</h2>
+            <p class="m1">Based on the choropleth map idiom on the right and the population size, <b class="tas">Tasmania</b> is heavily impacted by COVID-19 pandemic. The unemployment rate in <b class="tas">Tasmania</b> is 7.6% and that is 2.1% more compared to 2019.
+                Beside that, <b class="tas">Queensland</b> get affected significantly with a 7.7% unemployment rate in 2020 so far. All the data is normalised and based on the population of each state.
+            </p>  
+              <p class="m1"> 
+                The possible reason for the rising of unemplyment rate might due to the fact that businesses are either <b>temporary closing</b> or <b>shut down</b> due to the restriction and travel ban applied by the government because of the pandemic.
+                To compensate with the closure, a lot of businesses have chosen to either <b>reduce the amount of employee</b> that is not crucial and <b>reduce the income</b> of overall hirerachy of employee in the company to cover the lost. Meanwhile, underemployment will take place where people are paid less than what they suppose to be paid for.
+            </p>
+          </div>
+         </div>
+          <div class="pure-u-2-3">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+                      <br>
+            <div id="vis2"  class="vis-container"></div>
+          </div>
+      </div>
+    <!-- end pure grid group -->
+      
+    <!-- pure grid group -->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h2>Impact of COVID-19 on Australia Industry</h2>
+          </div>
+          <div class="pure-u-1-1">
+            <div id="vis3"  class="vis-container"></div>
+          </div>
+          <div class="pure-u-1-1">
+            <div class="description description-bottom">
+              <p class="m1">This idiom clearly encode the impact of Covid-19 to local businesses. 
+                As seen in the chart, most industry that are related to tourism are having their revenue decreased due to the pandemic. Tourism industry lost more than <b class=
+"tas">70%</b> of their earning during the pandemic which almost make them lose everything. On the other hand, there exist increment on revenue as well but it would not be enough to cover to overall lost. Based on the chart and researches, the lost in revenue was mainly due to travel ban, law enforcement and border close (Movement Control) but not COVID-19 itself.
+                Based on the research, Australia earn roughly about <b>37.6 billion</b> from education industry. Meanwhile, education field get hit hard with a reduction of <b class="tas">87%</b> and that severely dragged the economy of Australia down. The lost had been fall more than what was anticipated and it might take several years to recover from the economical crisis in this pandemic. 
+              </p> 
+            </div>
+          </div>
 
+      </div>
+    <!-- end pure grid group -->
+      
+      <div class="pure-g">
+        <div class="pure-u-1-1 small-font">
+          <p>This visualisation is created by <a href="https://github.com/angzixuan" target="_blank">Zi Xuan Ang (Alex)</a>.</p>
+        </div>
+      </div>
+          
+    </div> 
+    <!-- end page -->
 
-   
-
-    <script>
-
-      function open(type){
-        if(type ==1){
-            console.log("11")
-        }
-      }
+    <script type="text/javascript">
       // Assign the specification to a local variable vlSpec.
-      var targetSpec = {
-        "width": 200,
-        "height": 200,
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "description": "",
-        "data": {"url": "heart.csv"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "target", "type": "nominal"},
-            "y": {"aggregate": "count",}
-        }
-        }
-    var sexSpec = {
-        "width": 300,
-        "height": 200,
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "description": "",
-        "data": {"url": "heart.csv"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "sex", "type": "nominal"},
-            "y": {"aggregate": "count",}
-        }
-        }
-    var targetAgeSpec = {
-        "data": {"url": "heart.csv"},
-        "width": 350,
-        // "width": {"step": 50, "for": "position"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "age"},
-            "y": {"aggregate": "count",},
-            "xOffset": {"field": "target"},
-            "color": {"field": "target"}
-        }
-    }
-
-    var targetSexSpec = {
-        "width": 300,
-        "height": 200,
-        "data": {"url": "heart.csv"},
-        // "width": {"step": 50, "for": "position"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "sex"},
-            "y": {"aggregate": "count",},
-            "xOffset": {"field": "target"},
-            "color": {"field": "target"}
-        }
-    }
-    var targetSlopeSpec = {
-        "width": 300,
-        "height": 200,
-        "data": {"url": "heart.csv"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "slope"},
-            "y": {"aggregate": "count",},
-            "xOffset": {"field": "target"},
-            "color": {"field": "target"}
-        }
-    }
-
-    var targetFBSSpec = {
-        "width": 300,
-        "height": 200,
-        "data": {"url": "heart.csv"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "fbs"},
-            "y": {"aggregate": "count",},
-            "xOffset": {"field": "target"},
-            "color": {"field": "target"}
-        }
-    }
-
-    var targetCPSpec = {
-        "width": 300,
-        "height": 200,
-        "data": {"url": "heart.csv"},
-        "mark": "bar",
-        "encoding": {
-            "x": {"field": "cp"},
-            "y": {"aggregate": "count",},
-            "xOffset": {"field": "target"},
-            "color": {"field": "target"}
-        }
-    }
-
-    var targetMapSpec ={
-        "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-        "width": 300,
-        "height": 300,
-        "data": {
-            "url": "us-10m.json",
-            "format": {
-            "type": "topojson",
-            "feature": "counties"
-            }
-        },
-        "transform": [{
-            "lookup": "id",
-            "from": {
-            "data": {
-                "url": "unemployment.tsv"
-            },
-            "key": "id",
-            "fields": ["rate"]
-            }
-        }],
-        "projection": {
-            "type": "albersUsa"
-        },
-        "mark": "geoshape",
-        "encoding": {
-            "color": {
-            "field": "rate",
-            "type": "quantitative"
-            }
-        }
-        }
-
+      var specVis1 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Map_1_v2.vl.json";
+      var specVis2 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Map_2_v2.vl-2.json";
+      var specVis3 = "https://raw.githubusercontent.com/angzixuan/FIT3179_Data_Visualisation/main/Final_Assignment/Chart/Vis3.vl-2.json";
+      
       // Embed the visualization in the container with id `vis`
-    //   vegaEmbed('#target', targetSpec);
-    //   vegaEmbed('#sex', sexSpec);
-      vegaEmbed('#targetAge', targetAgeSpec);
-      vegaEmbed('#targetSex', targetSexSpec);
-      vegaEmbed('#targetSlope',targetSlopeSpec);
-      vegaEmbed('#targetFBS',targetFBSSpec);
-      vegaEmbed('#targetCP',targetCPSpec);
-      vegaEmbed('#targetMap',targetMapSpec)
+      vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+      
+      vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+  
+      vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
     </script>
   </body>
 </html>
