@@ -1,0 +1,13 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width": 800,
+    "height": 400,
+    "projection": {"type": "equirectangular"},
+    "data": {"url": "day_wise.csv"},
+    "transform": [],
+    "mark": "line",
+    "encoding": {
+      "x": {"field": "Date", "type": "temporal"},
+      "y": {"field": "Confirmed", "type": "quantitative"}
+    }
+  }
